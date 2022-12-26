@@ -11,10 +11,24 @@ exports.getSong = async (req, res) => {
     const playlistId = req.query.playlistId;
 
     if (playlistId) {
-        const result = await Song.find({playlistId});
+        const result = await Song.find({ playlistId });
         return res.send(result);
     }
 
     const result = await Song.find({});
+    res.send(result);
+}
+
+exports.updateSong = async (req, res) => {
+    const songId = req.params.id;
+    const body = req.body;
+    const result = await Song.findByIdAndUpdate(songId, {artist: body.artist})
+    result.save();
+    res.send(result);
+}
+
+exports.deleteSong = async (req, res) => {
+    const songId = req.params.id;
+    const result = await Song.findByIdAndDelete( songId );
     res.send(result);
 }
