@@ -1,12 +1,14 @@
 const express = require('express');
-const { createPlaylist, getPlaylist } = require('../controllers/playlistController');
+const { createPlaylist, updatePlaylist, deletePlaylist, addToPlaylist, getPlaylists, getPlaylist } = require('../controllers/playlistController');
 
 const router = express.Router();
 
 router
-    .get('/playlists', getPlaylist)
+    .get('/playlists', getPlaylists)
+    .get('/playlists/:id', getPlaylist)
     .post('/playlists', createPlaylist)
-    .put('/playlist/:id', () => {})
-    .delete('/playlist/:id', () => {})
+    .put('/playlist/:id', updatePlaylist)
+    .put('/playlists/:id', addToPlaylist)
+    .delete('/playlist/:id', deletePlaylist)
 
 exports.playlistRoutes = router;
