@@ -8,7 +8,7 @@ router
     .get('/playlists/:id', getPlaylist)
     .post('/playlists', createPlaylist)
     .put('/playlist/:id', updatePlaylist)
-    .put('/playlists/:id', addToPlaylist)
+    // .put('/playlists/:id', addToPlaylist)
     .delete('/playlist/:id', deletePlaylist)
 
 exports.playlistRoutes = router;
