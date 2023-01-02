@@ -1,6 +1,6 @@
 const { Schema, Types, model } = require('mongoose');
 
-const songSchema = new Schema({
+const artistSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -12,5 +12,5 @@ const songSchema = new Schema({
     createdAt: { type: Date, default: Date.now() },
 });
 
-const Song = model('Song', songSchema);
-exports.Song = Song;
+const Artist = model('artist', artistSchema);
+exports.Artist = Artist;

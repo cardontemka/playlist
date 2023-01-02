@@ -22,12 +22,8 @@ exports.getSong = async (req, res) => {
 exports.updateSong = async (req, res) => {
     const songId = req.params.id;
     const body = req.body;
-    const thisData = await Song.findById( songId )
-    const result = await Song.findByIdAndUpdate(songId, {
-        artist: body.artist || thisData.artist,
-        name: body.name || thisData.name,
-        playlistId: body.playlistId || thisData.playlistId
-    });
+    // const thisData = await Song.findById( songId )
+    const result = await Song.findByIdAndUpdate(songId, {name: body.name});
     result.save();
     res.send(result);
 }
