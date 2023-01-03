@@ -13,7 +13,6 @@ const playlistSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    creatorId: String,
     // creator: {
     //     type: String,
     //     required: true,

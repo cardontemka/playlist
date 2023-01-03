@@ -7,10 +7,13 @@ const artistSchema = new Schema({
     },
     creator: {
         type: Types.ObjectId,
-        required: true,
+        ref: "User",
     },
-    createdAt: { type: Date, default: Date.now() },
+    createdAt: {
+        type: Date,
+        default: Date.now(),
+    },
 });
 
-const Artist = model('artist', artistSchema);
+const Artist = model('Artist', artistSchema);
 exports.Artist = Artist;
