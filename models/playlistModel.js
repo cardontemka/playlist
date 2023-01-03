@@ -13,11 +13,11 @@ const playlistSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    // creator: {
-    //     type: String,
-    //     required: true,
-    //     ref: "User",
-    // },
+    creator: {
+        type: String,
+        required: true,
+        ref: "User",
+    },
     createdAt: {
         type: Date,
         requered: true,
