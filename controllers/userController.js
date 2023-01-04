@@ -20,11 +20,11 @@ exports.loginUser = async (req, res) => {
 };
 
 exports.getUsers = async (_req, res) => {
-  const result = await User.find({});
+  const result = await User.find({}).populate('playlists');
   res.send(result);
 };
 
 exports.getUser = async (req, res) => {
-  const result = await User.findById(req.params.id);
+  const result = await User.findById(req.params.id).populate('playlists');
   res.send(result);
 };

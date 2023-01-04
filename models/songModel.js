@@ -17,7 +17,7 @@ const songSchema = new Schema({
         type: Date,
         default: Date.now(),
     },
-    url: String,
+    // url: String,
 });
 
 const Song = model('Song', songSchema);

@@ -13,6 +13,13 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now(),
     },
+    playlists: [
+        {
+            type: Schema.Types.ObjectId,
+            required: false,
+            ref: 'Playlist'
+        }
+    ]
 });
 
 const User = model('User', userSchema);
