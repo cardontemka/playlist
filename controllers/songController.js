@@ -23,13 +23,28 @@ exports.updateSong = async (req, res) => {
     const songId = req.params.id;
     const body = req.body;
     // const thisData = await Song.findById( songId )
-    const result = await Song.findByIdAndUpdate(songId, {name: body.name});
+    const result = await Song.findByIdAndUpdate(songId, body);
     result.save();
     res.send(result);
 }
 
 exports.deleteSong = async (req, res) => {
     const songId = req.params.id;
-    const result = await Song.findByIdAndDelete( songId );
+    const result = await Song.findByIdAndDelete(songId);
     res.send(result);
+}
+
+exports.addArtistToSong = async (req, res) => {
+    const songId = req.params.id;
+    const artistId = req.body.id;
+
+    try {
+        await Song.findByIdAndUpdate(songId, {
+            $push: { artist: artistId },
+        })
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+    }
 }

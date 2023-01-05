@@ -5,14 +5,14 @@ const songSchema = new Schema({
         type: String,
         required: true,
     },
-    creator: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-    },
-    artist: {
+    // creator: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "User",
+    // },
+    artist: [{
         type: Schema.Types.ObjectId,
         ref: "Artist",
-    },
+    }],
     createdAt: {
         type: Date,
         default: Date.now(),

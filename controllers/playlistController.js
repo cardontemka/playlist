@@ -2,11 +2,11 @@ const { Playlist } = require("../models/playlistModel");
 
 exports.createPlaylist = async (req, res) => {
     const body = req.body;
-    const result = await new Playlist(body).save()
+    const result = await new Playlist(body).save();
     res.send(result)
 }
 
-exports.addToPlaylist = async (req, res) => {
+exports.addSongToPlaylist = async (req, res) => {
     const playlistId = req.params.id;
     const songId = req.body.id;
     const playlist = await Playlist.findById(playlistId);
@@ -15,7 +15,7 @@ exports.addToPlaylist = async (req, res) => {
     res.send(playlist);
 };
 
-exports.getPlaylists = async (req, res) => {
+exports.getPlaylists = async (_req, res) => {
     const result = await Playlist.find({}).populate('songs')
     res.send(result)
 }
@@ -28,7 +28,7 @@ exports.getPlaylist = async (req, res) => {
 exports.updatePlaylist = async (req, res) => {
     const id = req.params.id;
     const body = req.body;
-    const result = await Playlist.findByIdAndUpdate(id, { title: body.title })
+    const result = await Playlist.findByIdAndUpdate(id, body)
     result.save();
     res.send(result);
 }
