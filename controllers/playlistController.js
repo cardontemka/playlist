@@ -2,8 +2,14 @@ const { Playlist } = require("../models/playlistModel");
 
 exports.createPlaylist = async (req, res) => {
     const body = req.body;
-    const result = await new Playlist(body).save();
-    res.send(result)
+    try {
+        const result = await new Playlist(body).save();
+        res.send(result)
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+    }
 }
 
 exports.addSongToPlaylist = async (req, res) => {
@@ -28,9 +34,15 @@ exports.getPlaylist = async (req, res) => {
 exports.updatePlaylist = async (req, res) => {
     const id = req.params.id;
     const body = req.body;
-    const result = await Playlist.findByIdAndUpdate(id, body)
-    result.save();
-    res.send(result);
+    try {
+        const result = await Playlist.findByIdAndUpdate(id, body)
+        result.save();
+        res.send(result);
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+    }
 }
 
 exports.deletePlaylist = async (req, res) => {

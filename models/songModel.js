@@ -13,6 +13,11 @@ const songSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Artist",
     }],
+    image: {
+        type: String,
+        required: false,
+        ref: "Artist",
+    },
     createdAt: {
         type: Date,
         default: Date.now(),

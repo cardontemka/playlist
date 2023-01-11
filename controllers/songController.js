@@ -7,17 +7,22 @@ exports.createSong = async (req, res) => {
     res.send(result)
 }
 
-exports.getSong = async (req, res) => {
+exports.getSongs = async (req, res) => {
     const playlistId = req.query.playlistId;
 
     if (playlistId) {
-        const result = await Song.find({ playlistId });
+        const result = await Song.find({ playlistId }).populate('artist');
         return res.send(result);
     }
 
-    const result = await Song.find({});
+    const result = await Song.find({}).populate('artist');
     res.send(result);
 }
+
+exports.getSong = async (req, res) => {
+    const result = await Song.findById(req.params.id).populate('artist');
+    res.send(result);
+};
 
 exports.updateSong = async (req, res) => {
     const songId = req.params.id;

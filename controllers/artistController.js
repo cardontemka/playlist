@@ -21,3 +21,11 @@ exports.getArtist = async (req, res) => {
   const result = await Artist.findById(req.params.id);
   res.send(result);
 };
+
+exports.updateArtist = async (req, res) => {
+  const artistId = req.params.id;
+  const body = req.body;
+  const result = await Artist.findByIdAndUpdate(artistId, body);
+  result.save();
+  res.send(result);
+}

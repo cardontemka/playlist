@@ -1,10 +1,11 @@
 const express = require('express');
-const { createSong, getSong, updateSong, deleteSong } = require('../controllers/songController');
+const { createSong, getSong, updateSong, deleteSong, getSongs } = require('../controllers/songController');
 
 const router = express.Router();
 
 router
-    .get('/songs', getSong)
+    .get('/songs', getSongs)
+    .get('/songs/:id', getSong)
     .post('/songs', createSong)
     .put('/song/:id', updateSong)
     .delete('/song/:id', deleteSong)

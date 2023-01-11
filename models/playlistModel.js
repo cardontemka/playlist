@@ -13,6 +13,10 @@ const playlistSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    image: {
+        type: String,
+        required: false,
+    },
     creator: {
         type: Schema.Types.ObjectId,
         required: true,
