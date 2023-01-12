@@ -16,7 +16,6 @@ const songSchema = new Schema({
     image: {
         type: String,
         required: false,
-        ref: "Artist",
     },
     createdAt: {
         type: Date,

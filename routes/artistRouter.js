@@ -1,5 +1,5 @@
 const express = require("express");
-const { getArtists, getArtist, createArtist, updateArtist } = require("../controllers/artistController");
+const { getArtists, getArtist, createArtist, updateArtist, deleteArtist } = require("../controllers/artistController");
 
 const router = express.Router();
 
@@ -8,6 +8,6 @@ router
   .get("/artists/:id", getArtist)
   .post("/artists", createArtist)
   .put("/artists/:id", updateArtist)
-  .delete("/artists/:id", () => {});
+  .delete("/artist/:id", deleteArtist);
 
 exports.artistRoutes = router;

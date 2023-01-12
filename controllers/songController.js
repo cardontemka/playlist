@@ -44,12 +44,24 @@ exports.addArtistToSong = async (req, res) => {
     const artistId = req.body.id;
 
     try {
-        await Song.findByIdAndUpdate(songId, {
-            $push: { artist: artistId },
-        })
+        const song = await Song.findById(songId);
+        song.artist.push(artistId);
+        await song.save();
+        res.send(song)
     } catch (error) {
         if (error instanceof Error) {
             res.status(400).send({ message: error.message });
         }
     }
+
+    // try {
+    //     const song = await Song.findByIdAndUpdate(songId, {
+    //         $push: { artist: artistId },
+    //     })
+    //     res.send(song)
+    // } catch (error) {
+    //     if (error instanceof Error) {
+    //         res.status(400).send({ message: error.message });
+    //     }
+    // }
 }

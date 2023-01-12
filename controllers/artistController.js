@@ -22,6 +22,12 @@ exports.getArtist = async (req, res) => {
   res.send(result);
 };
 
+exports.deleteArtist = async (req, res) => {
+  const artistId = req.params.id;
+  const result = await Artist.findByIdAndDelete(artistId);
+  res.send(result);
+}
+
 exports.updateArtist = async (req, res) => {
   const artistId = req.params.id;
   const body = req.body;

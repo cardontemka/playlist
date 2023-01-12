@@ -22,12 +22,22 @@ exports.addSongToPlaylist = async (req, res) => {
 };
 
 exports.getPlaylists = async (_req, res) => {
-    const result = await Playlist.find({}).populate('songs')
+    const result = await Playlist.find({}).populate({
+        path: 'songs',
+        populate: {
+            path: 'artist'
+        }
+    })
     res.send(result)
 }
 
 exports.getPlaylist = async (req, res) => {
-    const result = await Playlist.findById(req.params.id).populate('songs')
+    const result = await Playlist.findById(req.params.id).populate({
+        path: 'songs',
+        populate: {
+            path: 'artist'
+        }
+    })
     res.send(result)
 }
 
