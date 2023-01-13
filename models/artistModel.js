@@ -9,6 +9,10 @@ const artistSchema = new Schema({
         type: String,
         required: false,
     },
+    songs: [{
+        type: Schema.Types.ObjectId,
+        ref: "Song"
+    }],
     // creator: {
     //     type: Types.ObjectId,
     //     ref: "User",

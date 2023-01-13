@@ -6,7 +6,7 @@ const router = express.Router();
 router
     .get('/songs', getSongs)
     .get('/songs/:id', getSong)
-    .post('/songs', createSong)
+    .post('/songs', createSong, addS)
     .put('/song/:id', updateSong)
     .put('/songs/:id', addArtistToSong)
     .delete('/song/:id', deleteSong)

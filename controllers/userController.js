@@ -2,15 +2,17 @@ const { User } = require("../models/userModel");
 
 exports.createUser = async (req, res) => {
   const body = req.body;
-  const result = await new User(body).save();
-  res.send(result);
+  try {
+    const result = await new User(body).save();
+    res.send(result);
+  } catch (error) {
+    res.status(500).send('error')
+  }
 };
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-
-  console.log(user);
 
   if (user.password === password) {
     res.send(user);
@@ -20,11 +22,19 @@ exports.loginUser = async (req, res) => {
 };
 
 exports.getUsers = async (_req, res) => {
-  const result = await User.find({}).populate('playlists');
-  res.send(result);
+  try {
+    const result = await User.find({}).populate('playlists');
+    res.send(result);
+  } catch (error) {
+    res.status(502).send('error')
+  }
 };
 
 exports.getUser = async (req, res) => {
-  const result = await User.findById(req.params.id).populate('playlists');
-  res.send(result);
+  try {
+    const result = await User.findById(req.params.id).populate('playlists');
+    res.send(result);
+  } catch (error) {
+    res.status(503).send('error')
+  }
 };
