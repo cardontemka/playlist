@@ -16,16 +16,6 @@ exports.addSongToPlaylist = async (req, res) => {
     const playlistId = req.params.id;
     const songId = req.body.id;
     try {
-        // const playlist = await Playlist.findById(playlistId);
-        // playlist.songs.map((item, _index) => {
-        //     if (songId !== item.id) {
-        //         playlist.update({
-        //             $push: { songs: songId },
-        //         })
-        //     } else {
-        //         res.status(505).send('Error')
-        //     }
-        // })
         const playlist = await Playlist.findByIdAndUpdate(playlistId, {
             $push: { songs: songId }
         })
@@ -74,6 +64,23 @@ exports.updatePlaylist = async (req, res) => {
         if (error instanceof Error) {
             res.status(505).send({ message: error.message });
         }
+    }
+}
+
+exports.removeSongFromPlaylist = async (req, res) => {
+    const playlistId = req.params.id;
+    const songId = req.body.remove;
+    try {
+        const result = await Playlist.findById(playlistId)
+        result.songs.forEach((song, index) => {
+            if (song._id == songId) {
+                result.songs.splice(index, 1);
+            }
+        })
+        await result.save();
+        res.send(result)
+    } catch (error) {
+        res.status(509).send('Error', req)
     }
 }
 
